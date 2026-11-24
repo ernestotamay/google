@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuevo Contacto</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'contacts/bootstrap.css' %}">
+    <style>
+        body {
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar" style="background-color:#e8e8e8;">
+  <div class="container-fluid">
+
+    <div>
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'contacts/icons/menu.svg' %}"
+             data-bs-toggle="collapse"
+             data-bs-target="#ShowHideSidebar" />
+
+        <img src="{% static 'contacts/icons/person.svg' %}" height="40" />
+        Contacts
+      </a>
+    </div>
+
+    <div class="w-50">
+      <form class="d-flex input-group" role="search">
+        <span class="input-group-text">
+          <img src="{% static 'contacts/icons/search.svg' %}" />
+        </span>
+        <input class="form-control" type="search" placeholder="Search">
+      </form>
+    </div>
+
+    <div>
+      <a class="navbar-brand" href="#"><img src="{% static 'contacts/icons/help.svg' %}" height="24" /></a>
+      <a class="navbar-brand" href="#"><img src="{% static 'contacts/icons/settings.svg' %}" height="24" /></a>
+      <a class="navbar-brand" href="#"><img src="{% static 'contacts/icons/apps.svg' %}" height="24" /></a>
+      <a class="navbar-brand" href="#"><img src="{% static 'contacts/icons/person.svg' %}" height="24" /></a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ================= CONTENEDOR ================= -->
+<div class="container-fluid d-flex">
+
+  <!-- ========== SIDEBAR ========== -->
+  <div class="col-2 p-3 collapse show collapse-horizontal" id="ShowHideSidebar">
+
+    <a class="btn btn-info w-100 mb-2" href="{% url 'nuevo_contacto' %}">
+      <img src="{% static 'contacts/icons/add.svg' %}"> Crear contacto
+    </a>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-body" href="{% url 'index' %}">
+          <img src="{% static 'contacts/icons/person.svg' %}"> Contactos
+        </a>
+      </li>
+    </ul>
+
+    Manage
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link text-body" href="#"><img src="{% static 'contacts/icons/settings.svg' %}"> Fix and Merge</a></li>
+      <li class="nav-item"><a class="nav-link text-body" href="#"><img src="{% static 'contacts/icons/download.svg' %}"> Import</a></li>
+      <li class="nav-item"><a class="nav-link text-body" href="#"><img src="{% static 'contacts/icons/delete.svg' %}"> Bin</a></li>
+    </ul>
+
+    <span class="fw-bold">Tags</span>
+    <ul class="nav flex-column">
+      <li><a class="nav-link text-body" href="#"><img src="{% static 'contacts/icons/label.svg' %}"> Programming</a></li>
+      <li><a class="nav-link text-body" href="#"><img src="{% static 'contacts/icons/label.svg' %}"> Communication</a></li>
+      <li><a class="nav-link text-body" href="#"><img src="{% static 'contacts/icons/label.svg' %}"> English</a></li>
+    </ul>
+
+  </div>
+
+  <!-- ========== FORMULARIO ========== -->
+  <div class="col-9 m-3 p-4 rounded-3 bg-light">
+
+    <h1 class="h3 mb-4">Agregar nuevo contacto</h1>
+
+    <form method="POST" class="w-50">
+        {% csrf_token %}
+
+
+        <input type="text" name="nombre" class="form-control mb-3"  placeholder="Nombre"><br>
+    
+        <input type="text" name="apellido" class="form-control mb-3" placeholder="Apellido"><br>
+
+        <input type="text" name="empresa" class="form-control mb-3" placeholder="Empresa"><br>
+
+        <input type="email" name="email" class="form-control mb-3"placeholder="Email"><br>
+
+        <input type="text" name="telefono" class="form-control mb-3" placeholder="Teléfono"><br>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Volver</a>
+    </form>
+
+  </div>
+
+</div>
+
+<script src="{% static 'contacts/bootstrap.bundle.js' %}"></script>
+
+</body>
+</html>

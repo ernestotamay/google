@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contactos</title>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'contacts/bootstrap.css' %}">
+    <style>
+        body {
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <div>
+      <a class="navbar-brand" href="#">
+        <img
+          src="{% static 'contacts/icons/menu.svg' %}"
+          alt=""
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseWidthExample"
+          aria-expanded="false"
+        />
+        <img
+          src="{% static 'contacts/icons/person.svg' %}"
+          alt="Google Contacts Logo"
+          height="40"
+          class="d-inline-block align-text-top"
+        />
+        Contacts
+      </a>
+    </div>
+
+    <div class="w-50">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search">
+      </form>
+    </div>
+
+    <div>
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'contacts/icons/help.svg' %}" height="24" />
+      </a>
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'contacts/icons/settings.svg' %}" height="24" />
+      </a>
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'contacts/icons/apps.svg' %}" height="24" />
+      </a>
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'contacts/icons/person.svg' %}" height="24" />
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= CONTENEDOR PRINCIPAL ================= -->
+<div class="row">
+
+  <!-- ========== SIDEBAR ========== -->
+  <div class="col-2 p-3 collapse show collapse-horizontal" id="collapseWidthExample">
+
+    <a class="btn btn-info w-100 mb-2" href="{% url 'nuevo_contacto' %}">
+      <img src="{% static 'contacts/icons/add.svg' %}" alt="">
+      Crear contacto
+    </a>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/person.svg' %}"> Contacts
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/history.svg' %}"> Frequents
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/download.svg' %}"> Others
+        </a>
+      </li>
+    </ul>
+
+    <span class="fw-bold">Manage</span>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/settings.svg' %}"> Fix and Merge
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/settings.svg' %}"> Import
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/delete.svg' %}">
+          Bin
+        </a>
+      </li>
+    </ul>
+
+    <span class="fw-bold">Tags</span>
+    <ul class="nav flex-column">
+      <li><a class="nav-link text-body" href="#">
+            <img src="{% static 'contacts/icons/label.svg' %}">
+            Programming
+          </a>
+      </li>
+      <li><a class="nav-link text-body" href="#">
+            <img src="{% static 'contacts/icons/label.svg' %}">
+            Communication
+          </a>
+      </li>
+      <li><a class="nav-link text-body" href="#">
+            <img src="{% static 'contacts/icons/label.svg' %}">
+            English
+          </a>
+        </li>
+    </ul>
+
+  </div>
+
+  <!-- ========== CONTENIDO CENTRAL ========== -->
+  <div class="col-9 m-3 p-3 rounded-3 bg-light">
+<h1>Editar Contacto</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input class="form-control mb-3" type="text" name="nombre" value="{{ contacto.nombre }}" placeholder="Nombre"><br>
+    <input class="form-control mb-3" type="text" name="apellido" value="{{ contacto.apellido }}" placeholder="Apellido"><br>
+    <input class="form-control mb-3" type="text" name="telefono" value="{{ detalle.telefono }}" placeholder="Teléfono"><br>
+    <input class="form-control mb-3" type="text" name="empresa" value="{{ detalle.empresa }}" placeholder="Empresa"><br>
+    <input class="form-control mb-3" type="email" name="email" value="{{ detalle.correo }}" placeholder="Email"><br>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+
+    <a class="btn btn-primary" href="{% url 'index' %}">Volver</a>
+
+</form>   
+    
+  </div>
+</div>
+
+<script src="{% static 'contacts/bootstrap.bundle.js' %}"></script>
+
+</body>
+</html>
+

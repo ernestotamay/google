@@ -1,0 +1,10 @@
+<h1>Tareas de {{ lista.list }}</h1>
+<ul>
+  {% for t in tasks %}
+    <li><a href="{% url 'task-detail' t.id %}">{{ t.task }}</a></li>
+  {% empty %}
+    <li>No hay tareas aún.</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'task-add' %}">➕ Nueva tarea</a>
+<a href="{% url 'list-list' %}">⬅ Volver</a>

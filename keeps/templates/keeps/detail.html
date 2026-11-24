@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tag Detail</title>
+  </head>
+  <body>
+    <form action="{% url 'keeps:vote' tag.id %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+        <legend><h1>{{ tag.tag_text }}</h1></legend>
+        {% if error_message %}
+          <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+        {% for note in tag.note_set.all %}
+          <input type="radio" name="note" id="note{{ forloop.counter }}" value="{{ note.id }}">
+          <label for="note{{ forloop.counter }}">{{ note.note_text }}</label><br>
+        {% endfor %}
+      </fieldset>
+      <input type="submit" value="Vote">
+    </form>
+  </body>
+</html>

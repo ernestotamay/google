@@ -1,0 +1,8 @@
+<h1>Listas</h1>
+<a href="{% url 'list-add' %}">➕ Nueva lista</a>
+<ul>
+  {% for l in lists %}
+    <li><a href="{% url 'task-list' l.id %}">{{ l.list }}</a></li>
+  {% endfor %}
+</ul>
+<a href="{% url 'task-add' %}">➕ Nueva tarea</a>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Results</title>
+  </head>
+  <body>
+    <h1>{{ tag.tag_text }}</h1>
+    <ul>
+      {% for note in tag.note_set.all %}
+        <li>{{ note.note_text }} — {{ note.votes }} vote{{ note.votes|pluralize }}</li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'keeps:detail' tag.id %}">Vote again</a>
+  </body>
+</html>

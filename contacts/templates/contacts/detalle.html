@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalles del Contacto</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'contacts/bootstrap.css' %}">
+
+    <style>
+        body {
+            background-color: #e8e8e8;
+            font-family: Arial, sans-serif;
+        }
+
+        .card-google {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .avatar-circle {
+            width: 120px;
+            height: 120px;
+            background-color: #cfd8dc;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 55px;
+            font-weight: bold;
+            color: white;
+            overflow: hidden;
+        }
+
+        .detail-box {
+            background: #f2f4f6;
+            border-radius: 16px;
+            padding: 15px;
+        }
+
+        hr {
+            margin-top: 5px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ============ NAV BAR ============ -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <div>
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'contacts/icons/menu.svg' %}" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample">
+        <img src="{% static 'contacts/icons/person.svg' %}" height="40"> Contacts
+      </a>
+    </div>
+
+    <div class="w-50">
+      <form class="d-flex">
+        <input class="form-control" type="search" placeholder="Search">
+      </form>
+    </div>
+
+    <div>
+      <img src="{% static 'contacts/icons/help.svg' %}" height="24">
+      <img src="{% static 'contacts/icons/settings.svg' %}" height="24">
+      <img src="{% static 'contacts/icons/apps.svg' %}" height="24">
+      <img src="{% static 'contacts/icons/person.svg' %}" height="24">
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+
+  <!-- ========== SIDEBAR ========== -->
+  <div class="col-2 p-3 collapse show collapse-horizontal" id="collapseWidthExample">
+
+    <a class="btn btn-info w-100 mb-2" href="{% url 'nuevo_contacto' %}">
+      <img src="{% static 'contacts/icons/add.svg' %}" alt="">
+      Crear contacto
+    </a>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/person.svg' %}"> Contacts
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/history.svg' %}"> Frequents
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/download.svg' %}"> Others
+        </a>
+      </li>
+    </ul>
+
+    <span class="fw-bold">Manage</span>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/settings.svg' %}"> Fix and Merge
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/settings.svg' %}"> Import
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" href="#">
+          <img src="{% static 'contacts/icons/delete.svg' %}">
+          Bin
+        </a>
+      </li>
+    </ul>
+
+    <span class="fw-bold">Tags</span>
+    <ul class="nav flex-column">
+      <li><a class="nav-link text-body" href="#">
+            <img src="{% static 'contacts/icons/label.svg' %}">
+            Programming
+          </a>
+      </li>
+      <li><a class="nav-link text-body" href="#">
+            <img src="{% static 'contacts/icons/label.svg' %}">
+            Communication
+          </a>
+      </li>
+      <li><a class="nav-link text-body" href="#">
+            <img src="{% static 'contacts/icons/label.svg' %}">
+            English
+          </a>
+        </li>
+    </ul>
+
+  </div>
+
+  <!-- ========== TARJETA DEL CONTACTO ========== -->
+  <div class="col-9 m-3 p-4 card-google">
+
+    <div class="d-flex align-items-center gap-4">
+
+      <div class="avatar-circle">
+        {% if contacto.foto %}
+          <img src="{{ contacto.foto.url }}" style="width:100%; height:100%; object-fit:cover;">
+        {% else %}
+          {{ contacto.nombre|first|upper }}
+        {% endif %}
+      </div>
+
+      <h2 style="margin:0; font-weight:600;">
+        {{ contacto.nombre }} {{ contacto.apellido }}
+      </h2>
+    </div>
+
+    <hr>
+
+    <div class="detail-box">
+      {% for d in detalles %}
+        <p><strong>Empresa:</strong> {{ d.empresa }}</p>
+        <p><strong>Teléfono:</strong> {{ d.telefono }}</p>
+        <p><strong>Correo:</strong> {{ d.correo }}</p>
+        <hr>
+      {% empty %}
+        <p>Este contacto no tiene detalles registrados.</p>
+      {% endfor %}
+    </div>
+
+    <a class="btn btn-secondary mt-3" href="{% url 'index' %}">Volver</a>
+
+  </div>
+</div>
+
+<script src="{% static 'contacts/bootstrap.bundle.js' %}"></script>
+
+</body>
+</html>
