@@ -1,10 +1,10 @@
 # Google Apps developed by Django Framework
 This project emulate: 
 - Google Contacts
-- Google Task
+- Google Tasks
 - Google Keeps
 
 
 Django/Admin Authentication
-* user: admin
-* pass: admin
+- user: admin
+- pass: admin
