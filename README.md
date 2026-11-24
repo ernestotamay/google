@@ -6,5 +6,5 @@ This project emulate:
 
 
 Django/Admin Authentication
-user: admin
-pass: admin
+* user: admin
+* pass: admin
